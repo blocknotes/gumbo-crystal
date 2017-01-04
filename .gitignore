@@ -1,0 +1,19 @@
+/doc/
+/libs/
+/lib/
+/bin/
+/.shards/
+
+# Libraries don't need dependency lock
+# Dependencies will be locked in application that uses them
+/shard.lock
+
+/.vscode/
+
+/examples/lib
+/examples/*.jpg
+/examples/*.png
+/spec/tmp.jpg
+/spec/tmp.png
+
+/_misc
