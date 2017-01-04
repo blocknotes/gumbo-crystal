@@ -1,6 +1,12 @@
 require "./gumbo-crystal/*"
 
 module Gumbo
+  GumboEmptySourcePosition = LibGumbo::GumboSourcePosition.new
+
+  GumboEmptyString = LibGumbo::GumboStringPiece.new
+
+  GumboEmptyVector = LibGumbo::GumboVector.new
+
   GumboDefaultOptions = LibGumbo::GumboOptions.new
   GumboDefaultOptions.allocator = ->( unused : Void*, size : LibC::SizeT ) do
     Pointer( LibC::Int ).malloc size

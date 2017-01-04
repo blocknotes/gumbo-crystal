@@ -59,6 +59,53 @@ lib LibGumbo
     offset : LibC::UInt
   end
 
+  # A struct representing a single attribute on an HTML tag.  This is a
+  # name-value pair, but also includes information about source locations and
+  # original source text.
+  struct GumboAttribute
+    # The namespace for the attribute.  This will usually be
+    # GUMBO_ATTR_NAMESPACE_NONE, but some XLink/XMLNS/XML attributes take special
+    # values, per:
+    # http://www.whatwg.org/specs/web-apps/current-work/multipage/tree-construction.html#adjust-foreign-attributes
+    attr_namespace : GumboAttributeNamespaceEnum
+
+    # The name of the attribute.  This is in a freshly-allocated buffer to deal
+    # with case-normalization, and is null-terminated.
+    name : LibC::Char*
+
+    # The original text of the attribute name, as a pointer into the original
+    # source buffer.
+    original_name : GumboStringPiece
+
+    # The value of the attribute.  This is in a freshly-allocated buffer to deal
+    # with unescaping, and is null-terminated.  It does not include any quotes
+    # that surround the attribute.  If the attribute has no value (for example,
+    # 'selected' on a checkbox), this will be an empty string.
+    value : LibC::Char*
+
+    # The original text of the value of the attribute.  This points into the
+    # original source buffer.  It includes any quotes that surround the
+    # attribute, and you can look at original_value.data[0] and
+    # original_value.data[original_value.length - 1] to determine what the quote
+    # characters were.  If the attribute has no value, this will be a 0-length
+    # string.
+    original_value : GumboStringPiece
+
+    # The starting position of the attribute name.
+    name_start : GumboSourcePosition
+
+    # The ending position of the attribute name.  This is not always derivable
+    # from the starting position of the value because of the possibility of
+    # whitespace around the = sign.
+    name_end : GumboSourcePosition
+
+    # The starting position of the attribute value.
+    value_start : GumboSourcePosition
+
+    # The ending position of the attribute value.
+    value_end : GumboSourcePosition
+  end
+
   # The struct used to represent TEXT, CDATA, COMMENT, and WHITESPACE elements.
   # This contains just a block of text and its position.
   struct GumboText

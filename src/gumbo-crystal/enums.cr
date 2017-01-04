@@ -1,9 +1,12 @@
 lib LibGumbo
-  # http://www.whatwg.org/specs/web-apps/current-work/complete/dom.html#quirks-mode
-  enum GumboQuirksModeEnum
-    GUMBO_DOCTYPE_NO_QUIRKS
-    GUMBO_DOCTYPE_QUIRKS
-    GUMBO_DOCTYPE_LIMITED_QUIRKS
+  # Attribute namespaces.
+  # HTML includes special handling for XLink, XML, and XMLNS namespaces on
+  # attributes.  Everything else goes in the generic "NONE" namespace.
+  enum GumboAttributeNamespaceEnum
+    GUMBO_ATTR_NAMESPACE_NONE,
+    GUMBO_ATTR_NAMESPACE_XLINK,
+    GUMBO_ATTR_NAMESPACE_XML,
+    GUMBO_ATTR_NAMESPACE_XMLNS,
   end
 
   # Namespaces.
@@ -99,6 +102,13 @@ lib LibGumbo
     # A flag for nodes that have been foster-parented out of a table (or
     # should've been foster-parented, if verbatim mode is set).
     GUMBO_INSERTION_FOSTER_PARENTED = 1 << 10
+  end
+
+  # http://www.whatwg.org/specs/web-apps/current-work/complete/dom.html#quirks-mode
+  enum GumboQuirksModeEnum
+    GUMBO_DOCTYPE_NO_QUIRKS
+    GUMBO_DOCTYPE_QUIRKS
+    GUMBO_DOCTYPE_LIMITED_QUIRKS
   end
 
   # An enum for all the tags defined in the HTML5 standard.  These correspond to
