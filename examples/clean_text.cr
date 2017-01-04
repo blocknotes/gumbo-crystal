@@ -1,3 +1,5 @@
+# - Example:     clean_text
+# - Description: Extract all text strings from an HTML string
 require "../gumbo-crystal"
 
 def clean_text( node : LibGumbo::GumboNode* )
