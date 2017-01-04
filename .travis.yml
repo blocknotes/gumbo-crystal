@@ -1,1 +1,10 @@
 language: crystal
+
+before_install:
+  - git clone https://github.com/google/gumbo-parser
+  - cd gumbo-parser
+  - ./autogen.sh
+  - ./configure
+  - make
+  - sudo make install
+  - sudo ldconfig
