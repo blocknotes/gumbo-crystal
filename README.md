@@ -1,4 +1,4 @@
-# gumbo-crystal
+# gumbo-crystal [![Build Status](https://travis-ci.org/blocknotes/gumbo-crystal.svg)](https://travis-ci.org/blocknotes/gumbo-crystal)
 
 Crystal C bindings for Gumbo library, an HTML5 parsing library made by Google - see [gumbo-parser](https://github.com/google/gumbo-parser)
 
