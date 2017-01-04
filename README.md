@@ -21,6 +21,17 @@ dependencies:
 
 ## Usage
 
+Wrapper access:
+
+```ruby
+require "gumbo-crystal"
+output = Gumbo::Output.new LibGumbo.gumbo_parse "<h1>A test</h1>" # wrapper init
+p output.root.type
+output.uninitialize # wrapper deinit
+```
+
+Direct lib access:
+
 ```ruby
 require "gumbo-crystal"
 output = LibGumbo.gumbo_parse "<h1>A test</h1>" # lib init
