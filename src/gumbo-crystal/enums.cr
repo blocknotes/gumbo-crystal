@@ -3,10 +3,10 @@ lib LibGumbo
   # HTML includes special handling for XLink, XML, and XMLNS namespaces on
   # attributes.  Everything else goes in the generic "NONE" namespace.
   enum GumboAttributeNamespaceEnum
-    GUMBO_ATTR_NAMESPACE_NONE,
-    GUMBO_ATTR_NAMESPACE_XLINK,
-    GUMBO_ATTR_NAMESPACE_XML,
-    GUMBO_ATTR_NAMESPACE_XMLNS,
+    GUMBO_ATTR_NAMESPACE_NONE
+    GUMBO_ATTR_NAMESPACE_XLINK
+    GUMBO_ATTR_NAMESPACE_XML
+    GUMBO_ATTR_NAMESPACE_XMLNS
   end
 
   # Namespaces.
@@ -20,25 +20,25 @@ lib LibGumbo
     GUMBO_NAMESPACE_MATHML
   end
 
-  # Enum denoting the type of node.  This determines the type of the node.v union.
+  #  Enum denoting the type of node.  This determines the type of the node.v union.
   enum GumboNodeType
     # Document node.  v will be a GumboDocument.
-    GUMBO_NODE_DOCUMENT,
+    GUMBO_NODE_DOCUMENT
     # Element node.  v will be a GumboElement.
-    GUMBO_NODE_ELEMENT,
+    GUMBO_NODE_ELEMENT
     # Text node.  v will be a GumboText.
-    GUMBO_NODE_TEXT,
+    GUMBO_NODE_TEXT
     # CDATA node. v will be a GumboText.
-    GUMBO_NODE_CDATA,
+    GUMBO_NODE_CDATA
     # Comment node.  v will be a GumboText, excluding comment delimiters.
-    GUMBO_NODE_COMMENT,
+    GUMBO_NODE_COMMENT
     # Text node, where all contents is whitespace.  v will be a GumboText.
-    GUMBO_NODE_WHITESPACE,
+    GUMBO_NODE_WHITESPACE
     # Template node.  This is separate from GUMBO_NODE_ELEMENT because many
-    # client libraries will want to ignore the contents of template nodes, as
-    # the spec suggests.  Recursing on GUMBO_NODE_ELEMENT will do the right thing
-    # here, while clients that want to include template contents should also
-    # check for GUMBO_NODE_TEMPLATE.  v will be a GumboElement.
+    #  client libraries will want to ignore the contents of template nodes, as
+    #  the spec suggests.  Recursing on GUMBO_NODE_ELEMENT will do the right thing
+    #  here, while clients that want to include template contents should also
+    #  check for GUMBO_NODE_TEMPLATE.  v will be a GumboElement.
     GUMBO_NODE_TEMPLATE
   end
 

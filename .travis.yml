@@ -8,3 +8,8 @@ before_install:
   - make
   - sudo make install
   - sudo ldconfig
+
+# Uncomment the following if you'd like Travis to run specs and check code formatting
+# script:
+#   - crystal spec
+#   - crystal tool format --check
