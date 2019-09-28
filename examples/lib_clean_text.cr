@@ -1,16 +1,16 @@
 # - Example:     clean_text
 # - Description: Extract all text strings from an HTML string
-require "../gumbo-crystal"
+require "../src/gumbo-crystal"
 
-def clean_text( node : LibGumbo::GumboNode* )
+def clean_text(node : LibGumbo::GumboNode*)
   if node.value.type == LibGumbo::GumboNodeType::GUMBO_NODE_TEXT
     String.new node.value.v.text.text
   elsif node.value.type == LibGumbo::GumboNodeType::GUMBO_NODE_ELEMENT && node.value.v.element.tag != LibGumbo::GumboTag::GUMBO_TAG_SCRIPT && node.value.v.element.tag != LibGumbo::GumboTag::GUMBO_TAG_STYLE
     contents = ""
     children = node.value.v.element.children
     (0...children.length).each do |i|
-      text = clean_text( children.data[i].as( LibGumbo::GumboNode* ) ).strip
-      contents += " " if( i > 0 && !text.empty? )
+      text = clean_text(children.data[i].as(LibGumbo::GumboNode*)).strip
+      contents += " " if (i > 0 && !text.empty?)
       contents += text
     end
     contents
@@ -29,5 +29,5 @@ html = <<-END
 END
 
 output = LibGumbo.gumbo_parse html
-puts clean_text( output.value.root )
+puts clean_text(output.value.root)
 LibGumbo.gumbo_destroy_output Gumbo::DefaultOptions, output

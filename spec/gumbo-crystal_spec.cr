@@ -12,8 +12,8 @@ END
 
   it "should initialize the library" do
     output = LibGumbo.gumbo_parse html
-    output.null?.should eq( false )
-    output.value.is_a?( LibGumbo::GumboOutput ).should eq( true )
+    output.null?.should eq(false)
+    output.value.is_a?(LibGumbo::GumboOutput).should eq(true)
     LibGumbo.gumbo_destroy_output Gumbo::DefaultOptions, output
   end
 end

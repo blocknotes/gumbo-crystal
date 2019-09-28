@@ -19,14 +19,14 @@ lib LibGumbo
   # library.  Iteration can be done through inspecting the structure directly in
   # a for-loop.
   struct GumboVector
-    # Data elements.  This points to a dynamically-allocated array of capacity
+    #  Data elements.  This points to a dynamically-allocated array of capacity
     # elements, each a void* to the element itself.
     data : Void**
 
-    # Number of elements currently in the vector.
+    #  Number of elements currently in the vector.
     length : LibC::UInt
 
-    # Current array capacity.
+    #  Current array capacity.
     capacity : LibC::UInt
   end
 
@@ -179,9 +179,9 @@ lib LibGumbo
 
   # The actual node data.
   union V
-    document : GumboDocument  # For GUMBO_NODE_DOCUMENT.
-    element : GumboElement    # For GUMBO_NODE_ELEMENT.
-    text : GumboText          # For everything else.
+    document : GumboDocument # For GUMBO_NODE_DOCUMENT.
+    element : GumboElement   # For GUMBO_NODE_ELEMENT.
+    text : GumboText         # For everything else.
   end
 
   # A supertype for GumboElement and GumboText, so that we can include one

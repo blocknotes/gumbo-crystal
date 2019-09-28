@@ -8,10 +8,10 @@ module Gumbo
   GumboEmptyVector = LibGumbo::GumboVector.new
 
   GumboDefaultOptions = LibGumbo::GumboOptions.new
-  GumboDefaultOptions.allocator = ->( unused : Void*, size : LibC::SizeT ) do
-    Pointer( LibC::Int ).malloc size
+  GumboDefaultOptions.allocator = ->(unused : Void*, size : LibC::SizeT) do
+    Pointer(LibC::Int).malloc size
   end
-  GumboDefaultOptions.deallocator = ->( unused : Void*, ptr : Void* ) do
+  GumboDefaultOptions.deallocator = ->(unused : Void*, ptr : Void*) do
     # free( ptr )
   end
   GumboDefaultOptions.userdata = nil
@@ -20,16 +20,16 @@ module Gumbo
   GumboDefaultOptions.max_errors = -1
   GumboDefaultOptions.fragment_context = LibGumbo::GumboTag::GUMBO_TAG_LAST
   GumboDefaultOptions.fragment_namespace = LibGumbo::GumboNamespaceEnum::GUMBO_NAMESPACE_HTML
-  DefaultOptions = pointerof( GumboDefaultOptions )
+  DefaultOptions = pointerof(GumboDefaultOptions)
 
   struct Node
     property node
 
-    def initialize( @node : LibGumbo::GumboNode )
+    def initialize(@node : LibGumbo::GumboNode)
     end
 
     def children
-      @children ||= Vector( LibGumbo::GumboNode, Node ).new node.v.element.children
+      @children ||= Vector(LibGumbo::GumboNode, Node).new node.v.element.children
     end
 
     def type
@@ -44,7 +44,7 @@ module Gumbo
   struct Output
     property output
 
-    def initialize( @output : LibGumbo::GumboOutput* )
+    def initialize(@output : LibGumbo::GumboOutput*)
     end
 
     def root
@@ -56,15 +56,15 @@ module Gumbo
     end
   end
 
-  struct Vector( T, U )
+  struct Vector(T, U)
     property vector
 
-    def initialize( @vector : LibGumbo::GumboVector )
+    def initialize(@vector : LibGumbo::GumboVector)
     end
 
-    def each( &block )
+    def each(&block)
       (0...vector.length).each do |i|
-        yield U.new( vector.data[i].as( T* ).value )
+        yield U.new(vector.data[i].as(T*).value)
       end
     end
   end
